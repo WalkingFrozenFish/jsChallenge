@@ -1,0 +1,49 @@
+.panels {
+    display: flex;
+}
+
+.panel {
+    /* width: 25%; */
+    /* height: 100vh; */
+    display: flex;
+    justify-content: space-around;
+    /* align-items: center; */
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.panel.open {
+    flex-grow: 8;
+}
+
+.panel p:nth-child(1) {
+    position: relative;
+    top: -200px;
+    transition: all 1s cubic-bezier(.56, .14, .34, .90);
+    -webkit-transition: all 1s cubic-bezier(.56, .14, .34, .90);
+    -moz-transition: all 1s cubic-bezier(.56, .14, .34, .90);
+}
+
+.panel.open p:nth-child(1) {
+    position: relative;
+    top: 0px;
+    transition: all 1s cubic-bezier(.56, .14, .34, .90);
+    -webkit-transition: all 1s cubic-bezier(.56, .14, .34, .90);
+    -moz-transition: all 1s cubic-bezier(.56, .14, .34, .90);
+}
+
+.panel p:nth-child(3) {
+    position: relative;
+    bottom: -200px;
+    transition: all 1s cubic-bezier(.56, .14, .34, .90);
+    -webkit-transition: all 1s cubic-bezier(.56, .14, .34, .90);
+    -moz-transition: all 1s cubic-bezier(.56, .14, .34, .90);
+}
+
+.panel.open p:nth-child(3) {
+    position: relative;
+    bottom: 0px;
+    transition: all 1s cubic-bezier(.56, .14, .34, .90);
+    -webkit-transition: all 1s cubic-bezier(.56, .14, .34, .90);
+    -moz-transition: all 1s cubic-bezier(.56, .14, .34, .90);
+}
