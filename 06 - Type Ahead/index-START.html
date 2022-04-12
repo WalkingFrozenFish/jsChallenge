@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Type Ahead 👀</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .mark {
+      background-color: orange;
+    }
+  </style>
+</head>
+
+<body>
+
+  <form class="search-form">
+    <input type="text" class="search" placeholder="City or State">
+    <ul class="suggestions">
+      <li>Filter for a city</li>
+      <li>or a state</li>
+    </ul>
+  </form>
+  <script>
+    const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
+
+    let input = document.querySelector("input");
+    let list = document.querySelector(".suggestions");
+
+    input.addEventListener("input", (e) => {
+      let result = fetch(endpoint)
+      result
+        .then(response => response.json())
+        .then(data => {
+          let arr = data.filter(item => item.city.includes(`${e.target.value}`) || item.state.includes(`${e.target.value}`))
+
+          let arrResult = arr.map(item => `<li><span>${markResult(item.city, e.target.value)}, ${markResult(item.state, e.target.value)}</span> ${Intl.NumberFormat().format(item.population)}</li> `)
+
+          list.innerHTML = "";
+          list.insertAdjacentHTML("beforeend", arrResult.join(""))
+        })
+    })
+
+    const markResult = (resultStr, markStr) => {
+      if (resultStr.includes(markStr)) {
+        return resultStr.replace(markStr, `<span class="mark">${markStr}</span>`);
+      } else {
+        return resultStr;
+      }
+    }
+
+  </script>
+</body>
+
+</html>
